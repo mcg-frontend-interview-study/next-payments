@@ -1,12 +1,15 @@
 import {validate} from '@/utils/validate';
 import {useInput} from './useInput';
+import useSelect from './useSelect';
 
-export type FieldType = Omit<ReturnType<typeof useInput>, 'directlyChangeValue'>;
+export type FieldInputType = Omit<ReturnType<typeof useInput>, 'directlyChangeValue'>;
+export type FieldSelectType = ReturnType<typeof useSelect>;
 
 type ReturnUseForm = {
-  cardNumbers: FieldType[];
-  expirationDate: FieldType[];
-  cardName: FieldType;
+  cardNumbers: FieldInputType[];
+  expirationDate: FieldInputType[];
+  cardName: FieldInputType;
+  cardBrand: FieldSelectType;
 };
 
 export const useForm = (): ReturnUseForm => {
@@ -20,9 +23,12 @@ export const useForm = (): ReturnUseForm => {
 
   const name = useInput({validateOnChange: validate.name.onChange});
 
+  const brand = useSelect('');
+
   return {
     cardNumbers: [first, second, third, fourth],
     expirationDate: [month, year],
     cardName: name,
+    cardBrand: brand,
   };
 };
