@@ -12,6 +12,7 @@ type ReturnUseForm = {
   cardBrand: FieldSelectType;
   cvc: FieldInputType;
   password: FieldInputType;
+  canSubmit: boolean;
 };
 
 export const useForm = (): ReturnUseForm => {
@@ -31,6 +32,31 @@ export const useForm = (): ReturnUseForm => {
 
   const password = useInput({validateOnChange: validate.password.onChange});
 
+  const isValidField =
+    first.errorMessage === null &&
+    second.errorMessage === null &&
+    third.errorMessage === null &&
+    fourth.errorMessage === null &&
+    month.errorMessage === null &&
+    year.errorMessage === null &&
+    name.errorMessage === null &&
+    cvc.errorMessage === null &&
+    password.errorMessage === null;
+
+  const isEmpty =
+    first.value === '' &&
+    second.value === '' &&
+    third.value === '' &&
+    fourth.value === '' &&
+    month.value === '' &&
+    year.value === '' &&
+    name.value === '' &&
+    brand.value === '' &&
+    cvc.value === '' &&
+    password.value === '';
+
+  const canSubmit = isValidField && !isEmpty;
+
   return {
     cardNumbers: [first, second, third, fourth],
     expirationDate: [month, year],
@@ -38,5 +64,6 @@ export const useForm = (): ReturnUseForm => {
     cardBrand: brand,
     cvc,
     password,
+    canSubmit,
   };
 };

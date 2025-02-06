@@ -9,10 +9,10 @@ import {CVC} from './Input/CVC';
 import {Password} from './Input/Password';
 
 export const Form = () => {
-  const {cardNumbers, expirationDate, cardName, cardBrand, cvc, password} = useForm();
+  const {cardNumbers, expirationDate, cardName, cardBrand, cvc, password, canSubmit} = useForm();
 
   return (
-    <form className="flex flex-col justify-center items-center gap-12 w-full">
+    <form className="relative flex flex-col justify-center items-center gap-12 w-full">
       <Preview
         cardNumbers={cardNumbers.map(cardNumber => cardNumber.value)}
         expirationDate={expirationDate.map(expiration => expiration.value)}
@@ -38,6 +38,11 @@ export const Form = () => {
           <Password password={password} />
         </Field>
       </section>
+      {canSubmit && (
+        <button className="fixed bottom-0 w-full py-5 bg-gray text-center font-bold text-white2 text-base/3">
+          확인
+        </button>
+      )}
     </form>
   );
 };

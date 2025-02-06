@@ -14,6 +14,7 @@ export default {
         border: '#ACACAC',
         label: '#8B95A1',
         red: '#FF3D3D',
+        white2: '#F3F3F3',
       },
     },
   },
