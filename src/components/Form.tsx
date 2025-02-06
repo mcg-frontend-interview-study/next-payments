@@ -10,6 +10,7 @@ import {Password} from './Input/Password';
 import {CardFlippedContextProvider} from '@/context/CardFlippedContext';
 
 import {useState} from 'react';
+import {useRouter} from 'next/navigation';
 
 export type Step = 'cardNumbers' | 'cardBrand' | 'expirationDate' | 'cardName' | 'cvc' | 'password';
 const stepOrder: Step[] = ['cardNumbers', 'cardBrand', 'expirationDate', 'cardName', 'cvc', 'password'];
@@ -21,6 +22,18 @@ export const Form = () => {
   const handleNext = (nextStep: Step) => {
     const nextStepIndex = stepOrder.findIndex(step => step === nextStep);
     setStepIndex(prev => Math.max(prev, nextStepIndex));
+  };
+
+  const router = useRouter();
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const params = new URLSearchParams();
+    params.append('card_numbers', cardNumbers[0].value);
+    params.append('card_brand', cardBrand.value);
+
+    router.push(`/complete?${params}`);
   };
 
   const fields: Array<React.ReactNode> = [
@@ -46,7 +59,7 @@ export const Form = () => {
 
   return (
     <CardFlippedContextProvider>
-      <form className="relative flex flex-col justify-center items-center gap-12 w-full mb-8">
+      <form className="relative flex flex-col justify-center items-center gap-12 w-full mb-8" onSubmit={onSubmit}>
         <Preview
           cardNumbers={cardNumbers.map(cardNumber => cardNumber.value)}
           expirationDate={expirationDate.map(expiration => expiration.value)}
@@ -62,7 +75,10 @@ export const Form = () => {
           })}
         </section>
         {canSubmit && (
-          <button className="fixed bottom-0 w-full py-5 bg-gray text-center font-bold text-white2 text-base/3  hover:bg-grayVariants active:bg-grayVariants">
+          <button
+            type="submit"
+            className="fixed bottom-0 w-full py-5 bg-gray text-center font-bold text-white2 text-base/3  hover:bg-grayVariants active:bg-grayVariants"
+          >
             확인
           </button>
         )}
