@@ -1,7 +1,7 @@
+import {validate} from '@/utils/validate';
 import {useInput} from './useInput';
 
-export type FieldType = [string, OnChange];
-type OnChange = (event: React.ChangeEvent<HTMLInputElement>) => void;
+export type FieldType = Omit<ReturnType<typeof useInput>, 'directlyChangeValue'>;
 
 type ReturnUseForm = {
   cardNumbers: FieldType[];
@@ -10,27 +10,19 @@ type ReturnUseForm = {
 };
 
 export const useForm = (): ReturnUseForm => {
-  const {value: first, onChange: onFirstChange} = useInput({});
-  const {value: second, onChange: onSecondChange} = useInput({});
-  const {value: third, onChange: onThirdChange} = useInput({});
-  const {value: fourth, onChange: onFourthChange} = useInput({});
+  const first = useInput({validateOnChange: validate.cardNumbers.onChange});
+  const second = useInput({validateOnChange: validate.cardNumbers.onChange});
+  const third = useInput({validateOnChange: validate.cardNumbers.onChange});
+  const fourth = useInput({validateOnChange: validate.cardNumbers.onChange});
 
-  const {value: month, onChange: onMonthChange} = useInput({});
-  const {value: year, onChange: onYearChange} = useInput({});
+  const month = useInput({validateOnChange: validate.expirationDate.month.onChange});
+  const year = useInput({validateOnChange: validate.expirationDate.year.onChange});
 
-  const {value: name, onChange: onNameChange} = useInput({});
+  const name = useInput({validateOnChange: validate.name.onChange});
 
   return {
-    cardNumbers: [
-      [first, onFirstChange],
-      [second, onSecondChange],
-      [third, onThirdChange],
-      [fourth, onFourthChange],
-    ],
-    expirationDate: [
-      [month, onMonthChange],
-      [year, onYearChange],
-    ],
-    cardName: [name, onNameChange],
+    cardNumbers: [first, second, third, fourth],
+    expirationDate: [month, year],
+    cardName: name,
   };
 };

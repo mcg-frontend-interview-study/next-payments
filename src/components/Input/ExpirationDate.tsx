@@ -5,9 +5,8 @@ type ExpirationDateProps = {
 };
 
 export const ExpirationDate = ({expirationDate}: ExpirationDateProps) => {
-  const errorMessage = expirationDate.some(expiration => expiration.errorMessage !== null)
-    ? expirationDate[0].errorMessage
-    : null;
+  const errorIndex = expirationDate.findIndex(expiration => expiration.errorMessage !== null);
+  const errorMessage = errorIndex === -1 ? null : expirationDate[errorIndex].errorMessage;
 
   return (
     <section className="flex flex-col gap-2">
