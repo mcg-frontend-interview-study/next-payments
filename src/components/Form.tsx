@@ -5,9 +5,10 @@ import {CardNumbers} from './Input/CardNumbers';
 import {ExpirationDate} from './Input/ExpirationDate';
 import {CardName} from './Input/CardName';
 import {CardBrand} from './Input/CardBrand';
+import {CVC} from './Input/CVC';
 
 export const Form = () => {
-  const {cardNumbers, expirationDate, cardName, cardBrand} = useForm();
+  const {cardNumbers, expirationDate, cardName, cardBrand, cvc} = useForm();
 
   return (
     <form className="flex flex-col justify-center items-center gap-12 w-full">
@@ -28,6 +29,9 @@ export const Form = () => {
         </Field>
         <Field title="카드 소유자 이름을 입력해 주세요">
           <CardName cardName={cardName} />
+        </Field>
+        <Field title="CVC 번호를 입력해 주세요">
+          <CVC cvc={cvc} />
         </Field>
       </section>
     </form>

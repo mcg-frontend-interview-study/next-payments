@@ -10,6 +10,7 @@ type ReturnUseForm = {
   expirationDate: FieldInputType[];
   cardName: FieldInputType;
   cardBrand: FieldSelectType;
+  cvc: FieldInputType;
 };
 
 export const useForm = (): ReturnUseForm => {
@@ -25,10 +26,13 @@ export const useForm = (): ReturnUseForm => {
 
   const brand = useSelect('');
 
+  const cvc = useInput({validateOnChange: validate.cvc.onChange});
+
   return {
     cardNumbers: [first, second, third, fourth],
     expirationDate: [month, year],
     cardName: name,
     cardBrand: brand,
+    cvc,
   };
 };
