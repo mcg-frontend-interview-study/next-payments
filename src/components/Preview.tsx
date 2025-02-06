@@ -5,6 +5,7 @@ type PreviewProps = {
   cardNumbers: string[];
   expirationDate: string[];
   cardName: string;
+  cardBrand: string;
   cvc: string;
 };
 
@@ -22,9 +23,22 @@ const getCardImage = (firstNumber: string) => {
   return null;
 };
 
-export const Preview = ({cardNumbers, expirationDate, cardName, cvc}: PreviewProps) => {
+const cardBrandBgColor: Record<string, string> = {
+  BC카드: 'bg-bc',
+  신한카드: 'bg-shinhan',
+  카카오뱅크: 'bg-kakaobank',
+  현대카드: 'bg-hyundai',
+  우리카드: 'bg-woori',
+  롯데카드: 'bg-lotte',
+  하나카드: 'bg-hana',
+  국민카드: 'bg-kb',
+};
+
+export const Preview = ({cardNumbers, expirationDate, cardName, cardBrand, cvc}: PreviewProps) => {
   const {isFlipped, setIsFlipped} = useCardFlippedContext();
   const cardImage = getCardImage(cardNumbers[0]);
+
+  const cardBrandBackgroundColor = cardBrand === '' ? 'bg-gray' : cardBrandBgColor[cardBrand];
 
   return (
     <div
@@ -37,7 +51,9 @@ export const Preview = ({cardNumbers, expirationDate, cardName, cvc}: PreviewPro
           isFlipped ? 'rotate-y-180' : ''
         }`}
       >
-        <article className="absolute w-full h-full bg-gray drop-shadow-md rounded-[4] flex flex-col justify-between px-4 py-2 front backface-hidden">
+        <article
+          className={`absolute w-full h-full ${cardBrandBackgroundColor} drop-shadow-md rounded-[4] flex flex-col justify-between px-4 py-2 front backface-hidden`}
+        >
           <header className="flex justify-between items-center">
             <Image src="/images/icChip.svg" alt="icChip" width={36} height={22} />
             {cardImage && <Image src={cardImage} alt="card company" width={36} height={22} />}

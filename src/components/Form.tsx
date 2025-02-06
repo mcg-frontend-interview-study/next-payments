@@ -19,6 +19,7 @@ export const Form = () => {
           cardNumbers={cardNumbers.map(cardNumber => cardNumber.value)}
           expirationDate={expirationDate.map(expiration => expiration.value)}
           cardName={cardName.value}
+          cardBrand={cardBrand.value}
           cvc={cvc.value}
         />
         <section className="flex flex-col-reverse gap-4">
