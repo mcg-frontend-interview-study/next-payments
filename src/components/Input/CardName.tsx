@@ -12,6 +12,7 @@ export const CardName = ({cardName}: CardNameProps) => {
         <input
           autoFocus
           className="flex-1 w-full border border-border rounded-sm p-2 text-xs/3"
+          maxLength={20}
           placeholder="JOHN DOE"
           value={cardName.value.toUpperCase()}
           onChange={cardName.onChange}

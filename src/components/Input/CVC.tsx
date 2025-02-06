@@ -14,7 +14,7 @@ export const CVC = ({cvc}: CVCProps) => {
           className="flex-1 w-full border border-border rounded-sm p-2 text-xs/3"
           placeholder="123"
           maxLength={3}
-          value={cvc.value.toUpperCase()}
+          value={cvc.value}
           onChange={cvc.onChange}
         />
       </fieldset>
