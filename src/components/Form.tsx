@@ -46,7 +46,7 @@ export const Form = () => {
 
   return (
     <CardFlippedContextProvider>
-      <form className="relative flex flex-col justify-center items-center gap-12 w-full">
+      <form className="relative flex flex-col justify-center items-center gap-12 w-full mb-8">
         <Preview
           cardNumbers={cardNumbers.map(cardNumber => cardNumber.value)}
           expirationDate={expirationDate.map(expiration => expiration.value)}
