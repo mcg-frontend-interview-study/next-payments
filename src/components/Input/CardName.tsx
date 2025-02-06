@@ -1,10 +1,19 @@
 import {FieldInputType} from '@/hooks/useForm';
+import {Step} from '../Form';
 
 type CardNameProps = {
   cardName: FieldInputType;
+  nextStep: Step;
+  handleNext: (nextStep: Step) => void;
 };
 
-export const CardName = ({cardName}: CardNameProps) => {
+export const CardName = ({cardName, nextStep, handleNext}: CardNameProps) => {
+  const handleBlur = () => {
+    if (cardName.errorMessage === null) {
+      handleNext(nextStep);
+    }
+  };
+
   return (
     <section className="flex flex-col gap-2">
       <fieldset className="flex w-full gap-[10]">
@@ -16,6 +25,7 @@ export const CardName = ({cardName}: CardNameProps) => {
           placeholder="JOHN DOE"
           value={cardName.value.toUpperCase()}
           onChange={cardName.onChange}
+          onBlur={handleBlur}
         />
       </fieldset>
       <p className="font-normal text-[9px]/3 text-red">{cardName.errorMessage}</p>

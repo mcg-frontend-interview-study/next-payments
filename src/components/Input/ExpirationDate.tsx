@@ -1,12 +1,21 @@
 import {FieldInputType} from '@/hooks/useForm';
+import {Step} from '../Form';
 
 type ExpirationDateProps = {
   expirationDate: FieldInputType[];
+  nextStep: Step;
+  handleNext: (nextStep: Step) => void;
 };
 
-export const ExpirationDate = ({expirationDate}: ExpirationDateProps) => {
+export const ExpirationDate = ({expirationDate, nextStep, handleNext}: ExpirationDateProps) => {
   const errorIndex = expirationDate.findIndex(expiration => expiration.errorMessage !== null);
   const errorMessage = errorIndex === -1 ? null : expirationDate[errorIndex].errorMessage;
+
+  const handleBlur = (index: number) => {
+    if (index === expirationDate.length - 1 && errorMessage === null) {
+      handleNext(nextStep);
+    }
+  };
 
   return (
     <section className="flex flex-col gap-2">
@@ -21,6 +30,7 @@ export const ExpirationDate = ({expirationDate}: ExpirationDateProps) => {
             placeholder={index === 0 ? 'MM' : 'YY'}
             value={expiration.value}
             onChange={expiration.onChange}
+            onBlur={() => handleBlur(index)}
           />
         ))}
       </fieldset>

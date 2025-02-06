@@ -44,15 +44,15 @@ export const useForm = (): ReturnUseForm => {
     password.errorMessage === null;
 
   const isEmpty =
-    first.value === '' &&
-    second.value === '' &&
-    third.value === '' &&
-    fourth.value === '' &&
-    month.value === '' &&
-    year.value === '' &&
-    name.value === '' &&
-    brand.value === '' &&
-    cvc.value === '' &&
+    first.value === '' ||
+    second.value === '' ||
+    third.value === '' ||
+    fourth.value === '' ||
+    month.value === '' ||
+    year.value === '' ||
+    name.value === '' ||
+    brand.value === '' ||
+    cvc.value === '' ||
     password.value === '';
 
   const canSubmit = isValidField && !isEmpty;

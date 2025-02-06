@@ -1,13 +1,22 @@
 import {FieldInputType} from '@/hooks/useForm';
+import {Step} from '../Form';
 
 type CardNumbersProps = {
   cardNumbers: FieldInputType[];
+  nextStep: Step;
+  handleNext: (nextStep: Step) => void;
 };
 
-export const CardNumbers = ({cardNumbers}: CardNumbersProps) => {
+export const CardNumbers = ({cardNumbers, nextStep, handleNext}: CardNumbersProps) => {
   const errorMessage = cardNumbers.some(cardNumber => cardNumber.errorMessage !== null)
     ? cardNumbers[0].errorMessage
     : null;
+
+  const handleBlur = (index: number) => {
+    if (index === cardNumbers.length - 1 && errorMessage === null) {
+      handleNext(nextStep);
+    }
+  };
 
   return (
     <section className="flex flex-col gap-2">
@@ -22,7 +31,7 @@ export const CardNumbers = ({cardNumbers}: CardNumbersProps) => {
             placeholder="1234"
             value={cardNumber.value}
             onChange={cardNumber.onChange}
-            onBlur={cardNumber.onBlur}
+            onBlur={() => handleBlur(index)}
           />
         ))}
       </fieldset>
