@@ -11,6 +11,9 @@ export default {
       colors: {
         gray: '#333333',
         white: '#ffffff',
+        border: '#ACACAC',
+        label: '#8B95A1',
+        red: '#FF3D3D',
       },
     },
   },
