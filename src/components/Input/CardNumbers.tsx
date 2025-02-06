@@ -1,7 +1,7 @@
-import {FieldType} from '@/hooks/useForm';
+import {FieldInputType} from '@/hooks/useForm';
 
 type CardNumbersProps = {
-  cardNumbers: FieldType[];
+  cardNumbers: FieldInputType[];
 };
 
 export const CardNumbers = ({cardNumbers}: CardNumbersProps) => {
@@ -12,7 +12,7 @@ export const CardNumbers = ({cardNumbers}: CardNumbersProps) => {
   return (
     <section className="flex flex-col gap-2">
       <fieldset className="flex w-full gap-[10]">
-        <legend className="font-medium text-xs/4 mb-2">카드번호</legend>
+        <legend className="font-medium text-xs/4 mb-2">카드 번호</legend>
         {cardNumbers.map((cardNumber, index) => (
           <input
             autoFocus={index === 0}

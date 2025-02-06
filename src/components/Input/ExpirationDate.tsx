@@ -1,7 +1,7 @@
-import {FieldType} from '@/hooks/useForm';
+import {FieldInputType} from '@/hooks/useForm';
 
 type ExpirationDateProps = {
-  expirationDate: FieldType[];
+  expirationDate: FieldInputType[];
 };
 
 export const ExpirationDate = ({expirationDate}: ExpirationDateProps) => {
@@ -11,7 +11,7 @@ export const ExpirationDate = ({expirationDate}: ExpirationDateProps) => {
   return (
     <section className="flex flex-col gap-2">
       <fieldset className="flex w-full gap-[10]">
-        <legend className="font-medium text-xs/4 mb-2">카드번호</legend>
+        <legend className="font-medium text-xs/4 mb-2">유효기간</legend>
         {expirationDate.map((expiration, index) => (
           <input
             autoFocus={index === 0}
