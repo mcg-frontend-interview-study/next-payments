@@ -59,17 +59,17 @@ export const Preview = ({cardNumbers, expirationDate, cardName, cardBrand, cvc}:
             {cardImage && <Image src={cardImage} alt="card company" width={36} height={22} />}
           </header>
           <section className="flex flex-col gap-2" aria-label="카드정보">
-            <ul className="flex w-full justify-between" aria-label="카드번호">
+            <ul className="flex w-full h-5 gap-[10]" aria-label="카드번호">
               {cardNumbers.map((number, index) => (
-                <p key={index} className="font-medium text-sm text-white tracking-widest">
+                <p key={index} className="w-[42] font-medium text-sm text-white tracking-widest">
                   {index >= 2 ? '*'.repeat(number.length) : number}
                 </p>
               ))}
             </ul>
-            <p className="font-medium text-sm text-white tracking-widest" aria-label="유효기간">
+            <p className="font-medium h-5 text-sm text-white tracking-widest" aria-label="유효기간">
               {expirationDate.every(exp => exp === '') ? '' : expirationDate.join('/')}
             </p>
-            <p className="font-medium text-sm text-white tracking-widest" aria-label="소유자명">
+            <p className="font-medium h-5 text-sm text-white tracking-widest" aria-label="소유자명">
               {cardName.toUpperCase()}
             </p>
           </section>
