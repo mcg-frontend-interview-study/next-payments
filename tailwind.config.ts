@@ -10,6 +10,7 @@ export default {
     extend: {
       colors: {
         gray: '#333333',
+        grayVariants: '#111111',
         white: '#ffffff',
         border: '#ACACAC',
         label: '#8B95A1',

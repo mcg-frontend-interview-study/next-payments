@@ -39,7 +39,7 @@ export const Form = () => {
         </Field>
       </section>
       {canSubmit && (
-        <button className="fixed bottom-0 w-full py-5 bg-gray text-center font-bold text-white2 text-base/3">
+        <button className="fixed bottom-0 w-full py-5 bg-gray text-center font-bold text-white2 text-base/3  hover:bg-grayVariants active:bg-grayVariants">
           확인
         </button>
       )}
