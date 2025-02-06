@@ -11,6 +11,7 @@ type ReturnUseForm = {
   cardName: FieldInputType;
   cardBrand: FieldSelectType;
   cvc: FieldInputType;
+  password: FieldInputType;
 };
 
 export const useForm = (): ReturnUseForm => {
@@ -28,11 +29,14 @@ export const useForm = (): ReturnUseForm => {
 
   const cvc = useInput({validateOnChange: validate.cvc.onChange});
 
+  const password = useInput({validateOnChange: validate.password.onChange});
+
   return {
     cardNumbers: [first, second, third, fourth],
     expirationDate: [month, year],
     cardName: name,
     cardBrand: brand,
     cvc,
+    password,
   };
 };

@@ -123,4 +123,26 @@ export const validate = {
       return errorInfo;
     },
   },
+
+  password: {
+    onChange: (caraNumber: string) => {
+      const errorInfo: ErrorInfo = {
+        errorMessage: null,
+        reset: null,
+      };
+
+      if (!isNumberOnly(caraNumber)) {
+        errorInfo.errorMessage = '숫자만 입력 가능합니다.';
+        errorInfo.reset = (value: string) => value.replace(/\D/g, '');
+      } else if (caraNumber.length < 2) {
+        errorInfo.errorMessage = '2자리 숫자를 입력해야합니다.';
+        errorInfo.reset = (value: string) => value;
+      } else {
+        errorInfo.errorMessage = null;
+        errorInfo.reset = null;
+      }
+
+      return errorInfo;
+    },
+  },
 };

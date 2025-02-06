@@ -6,9 +6,10 @@ import {ExpirationDate} from './Input/ExpirationDate';
 import {CardName} from './Input/CardName';
 import {CardBrand} from './Input/CardBrand';
 import {CVC} from './Input/CVC';
+import {Password} from './Input/Password';
 
 export const Form = () => {
-  const {cardNumbers, expirationDate, cardName, cardBrand, cvc} = useForm();
+  const {cardNumbers, expirationDate, cardName, cardBrand, cvc, password} = useForm();
 
   return (
     <form className="flex flex-col justify-center items-center gap-12 w-full">
@@ -32,6 +33,9 @@ export const Form = () => {
         </Field>
         <Field title="CVC 번호를 입력해 주세요">
           <CVC cvc={cvc} />
+        </Field>
+        <Field title="비밀번호를 입력해 주세요" description="앞의 2자리를 입력해주세요">
+          <Password password={password} />
         </Field>
       </section>
     </form>
