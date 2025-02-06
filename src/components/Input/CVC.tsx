@@ -1,3 +1,4 @@
+import {useCardFlippedContext} from '@/context/CardFlippedContext';
 import {FieldInputType} from '@/hooks/useForm';
 
 type CVCProps = {
@@ -5,12 +6,16 @@ type CVCProps = {
 };
 
 export const CVC = ({cvc}: CVCProps) => {
+  const {setIsFlipped} = useCardFlippedContext();
+
   return (
     <section className="flex flex-col gap-2">
       <fieldset className="flex w-full gap-[10]">
         <legend className="font-medium text-xs/4 mb-2">CVC</legend>
         <input
           autoFocus
+          onFocus={() => setIsFlipped(true)}
+          onBlur={() => setIsFlipped(false)}
           className="flex-1 w-full border border-border rounded-sm p-2 text-xs/3"
           placeholder="123"
           maxLength={3}
