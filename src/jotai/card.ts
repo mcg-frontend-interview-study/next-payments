@@ -1,3 +1,4 @@
+import {CARD_COMPANY} from '@/constants/card';
 import {CardInputs} from '@/types/card';
 import {atom} from 'jotai';
 
@@ -22,6 +23,11 @@ export const cardInputsValidation = atom({
 export const isCardFormValid = atom(get => {
   const validation = get(cardInputsValidation);
   return Object.values(validation).every(Boolean);
+});
+
+export const setCardCompanyAtom = atom(null, (get, set, value: keyof typeof CARD_COMPANY | null) => {
+  const prev = get(cardInputs);
+  set(cardInputs, {...prev, cardCompany: value});
 });
 
 export const setCardInput = atom(
