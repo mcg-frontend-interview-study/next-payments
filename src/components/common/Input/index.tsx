@@ -10,8 +10,11 @@ const Input = ({id, $isValid, ...rest}: InputProps, ref: React.Ref<HTMLInputElem
   return <input ref={ref} id={id} type="text" {...rest} css={inputStyle($isValid)} />;
 };
 
-const inputStyle = (isValid: boolean) => css`
-  border-color: ${isValid ? 'gray' : 'red'};
+const inputStyle = ($isValid: boolean) => css`
+  border-color: gray;
+  &:focus {
+    border-color: ${$isValid ? 'gray' : 'red'};
+  }
 `;
 
 export default forwardRef(Input);
