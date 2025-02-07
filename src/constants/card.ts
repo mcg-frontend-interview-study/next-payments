@@ -1,4 +1,4 @@
-import {CardCompanyStyle, EnglishCardCompanyName} from '@/types/card';
+import {CardCompanyStyle, CardInputs, EnglishCardCompanyName} from '@/types/card';
 
 export const CARD_COMPANY = {
   bc: 'BC카드',
@@ -44,3 +44,12 @@ export const CARD_TYPE = {
     length: 16,
   },
 };
+
+export const FORM_STEPS: (keyof CardInputs)[] = [
+  'cardNumber',
+  'cardCompany',
+  'expiration',
+  'customerName',
+  'cvcNumber',
+  'password',
+];
