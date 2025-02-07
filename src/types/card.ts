@@ -25,3 +25,6 @@ export interface InputContent extends Content {
   length: number;
   content: InputType[];
 }
+
+export type EnglishCardCompanyName = keyof typeof CARD_COMPANY;
+export type KoreanCardCompanyName = (typeof CARD_COMPANY)[keyof typeof CARD_COMPANY];
