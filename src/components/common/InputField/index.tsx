@@ -23,11 +23,6 @@ const InputField = ({inputContent, errorMessage, validationFn, validationFnList}
 
   const {inputRefs, focusNext} = useAutoFocus(content.length);
 
-  // 숫자를 위한 input에 숫자 외의 다른 값이 들어오는 경우를 처리하기 위한 함수
-  const isInputWithNonNumber = (inputType: string, value: string) => {
-    return inputType === 'number' && !isOnlyDigits(value);
-  };
-
   const isValid = (index: number, value: string) => {
     if (!isTouched) return true;
 
@@ -38,15 +33,8 @@ const InputField = ({inputContent, errorMessage, validationFn, validationFnList}
     return validationFn ? validationFn(value) : false;
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    idx: number,
-    inputType: string,
-    maxLength: number,
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number, maxLength: number) => {
     const {value} = e.target;
-
-    if (isInputWithNonNumber(inputType, value)) return;
 
     setInput({field: inputContent.fieldName, index: idx, value});
 
@@ -72,7 +60,7 @@ const InputField = ({inputContent, errorMessage, validationFn, validationFnList}
             type={input.type === 'number' ? 'text' : input.type}
             maxLength={input.length}
             placeholder={input.placeholder}
-            onChange={e => handleInputChange(e, idx, input.type, input.length)}
+            onChange={e => handleInputChange(e, idx, input.length)}
             $isValid={!isTouched || isValid(idx, inputs?.[idx] ?? '')}
           />
         ))}
