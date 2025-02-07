@@ -2,6 +2,8 @@ import {CARD_COMPANY} from '@/constants/card';
 import {CardInputs} from '@/types/card';
 import {atom} from 'jotai';
 
+export const focusedFieldAtom = atom<keyof CardInputs | null>(null);
+
 export const cardInputs = atom<CardInputs>({
   cardNumber: ['', '', '', ''],
   expiration: ['', ''],
