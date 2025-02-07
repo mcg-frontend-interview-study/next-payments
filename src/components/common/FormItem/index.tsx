@@ -8,10 +8,10 @@ interface FormItemProps {
 
 const FormItem = ({title, description, children}: FormItemProps) => {
   return (
-    <article>
+    <fieldset>
       <InputDescription title={title} description={description} />
       {children}
-    </article>
+    </fieldset>
   );
 };
 
