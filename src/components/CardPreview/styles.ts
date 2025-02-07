@@ -8,6 +8,8 @@ export const containerStyle = (color: string) => css`
   width: 30rem;
   height: 16rem;
 
+  margin-top: 2rem;
+
   font-size: 1.6rem;
   border-radius: 0.7rem;
 

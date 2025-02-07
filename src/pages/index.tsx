@@ -3,9 +3,15 @@ import {buttonContainerStyle, buttonStyle} from '@/components/CardForm/styles';
 import CardPreview from '@/components/CardPreview';
 import Button from '@/components/common/Button';
 import useFormProgress from '@/hooks/useFormProgress';
+import {useRouter} from 'next/router';
 
 export default function Home() {
   const {isFormValid} = useFormProgress();
+  const router = useRouter(); // ✅ Next.js Router 훅 사용
+
+  const handleSubmit = () => {
+    router.push('/confirm'); // ✅ 이동할 페이지 경로 설정
+  };
 
   return (
     <main style={homeStyle}>
@@ -14,7 +20,7 @@ export default function Home() {
 
       {isFormValid && (
         <div css={buttonContainerStyle}>
-          <Button type="submit" css={buttonStyle}>
+          <Button type="submit" onClick={handleSubmit} css={buttonStyle}>
             확인
           </Button>
         </div>
