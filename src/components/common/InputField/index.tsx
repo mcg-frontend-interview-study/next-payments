@@ -4,8 +4,8 @@ import Input from '../Input';
 import {useAtomValue, useSetAtom} from 'jotai';
 import {cardInputs, setCardInput} from '@/jotai/card';
 import useAutoFocus from '@/hooks/useAutoFocus';
-import {isOnlyDigits} from '@/utils/number';
 import {useState} from 'react';
+import useFocusedField from '@/hooks/useFocusedField';
 
 interface InputFieldProps {
   inputContent: InputContent;
@@ -21,6 +21,7 @@ const InputField = ({inputContent, errorMessage, validationFn, validationFnList}
   const inputs = useAtomValue(cardInputs)[fieldName];
   const setInput = useSetAtom(setCardInput);
 
+  const {handleFocus, handleBlur} = useFocusedField();
   const {inputRefs, focusNext} = useAutoFocus(content.length);
 
   const isValid = (index: number, value: string) => {
@@ -60,6 +61,8 @@ const InputField = ({inputContent, errorMessage, validationFn, validationFnList}
             type={input.type === 'number' ? 'text' : input.type}
             maxLength={input.length}
             placeholder={input.placeholder}
+            onFocus={() => handleFocus(fieldName)}
+            onBlur={handleBlur}
             onChange={e => handleInputChange(e, idx, input.length)}
             $isValid={!isTouched || isValid(idx, inputs?.[idx] ?? '')}
           />

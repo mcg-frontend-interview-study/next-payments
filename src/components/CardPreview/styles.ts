@@ -53,3 +53,23 @@ export const bottomContainer = css`
 
   padding: 0 3rem;
 `;
+
+export const lineStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  position: absolute;
+  bottom: 2rem;
+
+  background-color: #eecd5c;
+
+  width: 100%;
+  height: 3rem;
+`;
+
+export const cvcStyle = css`
+  color: white;
+  font-weight: bold;
+  margin-right: 1rem;
+`;
