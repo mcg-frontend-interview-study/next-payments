@@ -1,4 +1,4 @@
-import {CARD_COMPANY} from '@/constants/card';
+import {CARD_COMPANY, CARD_TYPE} from '@/constants/card';
 
 export interface CardInputs {
   cardNumber: string[];
@@ -28,3 +28,9 @@ export interface InputContent extends Content {
 
 export type EnglishCardCompanyName = keyof typeof CARD_COMPANY;
 export type KoreanCardCompanyName = (typeof CARD_COMPANY)[keyof typeof CARD_COMPANY];
+
+export type CardType = keyof typeof CARD_TYPE;
+
+export interface CardCompanyStyle {
+  color: string;
+}
